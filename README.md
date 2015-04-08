@@ -21,7 +21,7 @@ The following step will need to be done for each new customer.
   Unpacking objects: 100% (30/30), done.
   Checking connectivity... done.
   ```
-4. Edit the pom.xml to update the TBD's to the customer name.  Also, update to the lastest version of Applause Core. 
+4. Edit the pom.xml to update the TBD's to the customer name.  Also, update to the latest version of Applause Core. 
   ```xml
   <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
