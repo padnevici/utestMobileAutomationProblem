@@ -99,13 +99,16 @@ The following step will need to be done for each new customer.
   </project>
   ```
 5. rename template.auto to [customer].auto 
+  
   ```bash
   Oswald:template.auto brock$ cd ..
   Oswald:workspace brock$ mv template.auto/ customer.auto
   Oswald:workspace brock$ ls
   customer.auto
   ```
+
 6. Git Init the directory, reset the origin, commit, and checkin 
+  
   ```bash
   Oswald:customer.auto brock$ cd ..
   Oswald:workspace brock$ ls
@@ -138,6 +141,7 @@ The following step will need to be done for each new customer.
   To https://github.com/ApplauseAuto/customer.auto.git
   * [new branch]      master -> master
   ```
+  
 7. Add the following teams as collaborators in the repository settings 
   1. [customer_name].auto
   2. ATLs
