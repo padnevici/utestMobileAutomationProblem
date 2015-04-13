@@ -5,6 +5,7 @@ The following step will need to be done for each new customer.
 
 1. Create a new GitHub Team with the format [customer_name].auto 
   1. This group will be used to provide customer access to the repo 
+  2. You do not need to create a new Team for an existing client
 2. Create a new private repository [customer_name].auto 
 3. Check out the head of the master branch for template.auto 
   1. Navigate to that work space locally and run the following commands 
@@ -107,7 +108,8 @@ The following step will need to be done for each new customer.
   customer.auto
   ```
 
-6. Git Init the directory, reset the origin, commit, and checkin 
+6. Git Init the directory, reset the origin, commit, and checkin
+  1. You may need to force push (`git push -f origin master`), instead of what is featured below
   
   ```bash
   Oswald:customer.auto brock$ cd ..
