@@ -67,7 +67,7 @@ The following step will need to be done for each new customer.
 		  <dependency>
 			  <groupId>com.applause</groupId>
 			  <artifactId>auto.framework</artifactId>
-			  <version>1.0.8</version>
+			  <version>1.0.16</version>
 		  </dependency>
 		  <dependency>
 			  <groupId>info.cukes</groupId>
