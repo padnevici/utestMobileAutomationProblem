@@ -14,7 +14,6 @@ public class Pages {
 	}
 
 	public static SearchPage getSearchPage(AppiumDriver driver) {
-		logger.info("-ppppp-------->>>>");
 		SearchPage page = new SearchPage(driver);
 		return page;
 	}

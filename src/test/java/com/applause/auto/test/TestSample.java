@@ -18,6 +18,7 @@ import org.testng.annotations.Test;
 import com.applause.auto.framework.pageframework.util.DeviceControl;
 import com.applause.auto.framework.test.*;
 import com.applause.auto.pageframework.pages.Pages;
+import com.applause.auto.pageframework.testdata.TestConstants;
 
 public class TestSample extends BaseAppiumTest {
 	private static AppiumDriver _dr = BaseAppiumTest.driver;
@@ -56,10 +57,10 @@ public class TestSample extends BaseAppiumTest {
 	public static void testSetup() {
 	}
 
-	@Test(groups = { "" }, description = "")
+	@Test(groups = { TestConstants.TestNGGroups.REG}, description = "")
 	public static void test_1() throws InterruptedException {
 
-		Pages.getHomePage(_dr).enterSearchKeyWord("coffee");
+		Pages.getHomePage(_dr).enterSearchKeyWord(TestConstants.TestData.COFFEE_SEARCH_KWD);
 		Pages.getHomePage(_dr).tapSearchBtn();
 		Assert.assertTrue(Pages.getSearchPage(_dr).isAt());
 		Pages.getSearchPage(_dr).getListOfFoundItems();
