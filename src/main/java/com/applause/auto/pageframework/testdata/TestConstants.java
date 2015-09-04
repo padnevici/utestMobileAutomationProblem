@@ -9,14 +9,15 @@ public class TestConstants {
 		public static final String REG = "reg";
 	}
 
+	public final class Settings {
+		public static final int WAIT_TIME_SEC = 30;
+	}
+	
 	/**
 	 * Test Data for tests
 	 */
 	public final class TestData {
-
-		public static final int IMPLICIT_WAIT_TIME = 1000;
-		public static final int WAIT_TIME_SEC = 30;
-		public static final String COFFEE_SEARCH_KWD = "coffee";
+		public static final String TEST_1_SEARCH_KWD = "coffee";
 	}
 
 	public final class ErrorMessages {

@@ -2,18 +2,15 @@ package com.applause.auto.pageframework.pages;
 
 import io.appium.java_client.AppiumDriver;
 
-import org.openqa.selenium.By;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.applause.auto.framework.pageframework.device.DeviceUIData;
-import com.applause.auto.pageframework.chunks.LocalHelper;
 import com.applause.auto.pageframework.locators.Locators;
 import com.applause.auto.pageframework.testdata.TestConstants;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public class HomePage implements DeviceUIData {
 	private AppiumDriver _driver = null;
@@ -23,7 +20,7 @@ public class HomePage implements DeviceUIData {
 
 	public HomePage(AppiumDriver driver) {
 		_driver = driver;
-		_wait = new WebDriverWait(_driver, TestConstants.TestData.WAIT_TIME_SEC);
+		_wait = new WebDriverWait(_driver, TestConstants.Settings.WAIT_TIME_SEC);
 	}
 
 	public AppiumDriver getDriver() {

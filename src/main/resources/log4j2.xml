@@ -4,7 +4,7 @@
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="%5p:[%d{ISO8601}]  - %m%n" />
         </Console>
-        <File name="File" fileName="./logs/log1441341662.log" immediateFlush="false" append="false">
+        <File name="File" fileName="./logs/log1441403475.log" immediateFlush="false" append="false">
             <PatternLayout pattern="%5p:[%d{ISO8601}]  - %m%n"/>
         </File>
     </Appenders>

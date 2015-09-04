@@ -39,7 +39,7 @@ public class TestSample extends BaseAppiumTest {
 
 		// Enter coffee and tap on search
 		Pages.getHomePage(_dr).enterSearchKeyWord(
-				TestConstants.TestData.COFFEE_SEARCH_KWD);
+				TestConstants.TestData.TEST_1_SEARCH_KWD);
 		Pages.getHomePage(_dr).tapSearchBtn();
 
 		// Check if multiple results are displayed

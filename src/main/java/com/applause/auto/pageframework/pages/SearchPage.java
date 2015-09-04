@@ -3,7 +3,6 @@ package com.applause.auto.pageframework.pages;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.TouchAction;
 
-import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +26,7 @@ public class SearchPage implements DeviceUIData {
 
 	public SearchPage(AppiumDriver driver) {
 		_driver = driver;
-		_wait = new WebDriverWait(_driver, TestConstants.TestData.WAIT_TIME_SEC);
+		_wait = new WebDriverWait(_driver, TestConstants.Settings.WAIT_TIME_SEC);
 	}
 
 	public AppiumDriver getDriver() {
