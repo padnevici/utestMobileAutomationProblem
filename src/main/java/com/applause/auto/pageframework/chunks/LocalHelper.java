@@ -7,7 +7,7 @@ import java.io.IOException;
 
 import org.openqa.selenium.WebElement;
 
-import com.applause.auto.pageframework.testdata.TestConstants;
+import com.applause.auto.pageframework.testdata.TestConstantss;
 
 public final class LocalHelper {
 	public static String getElementText(WebElement webElement) {

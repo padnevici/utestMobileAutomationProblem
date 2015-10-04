@@ -1,6 +1,6 @@
 package com.applause.auto.pageframework.chunks;
 
-public class FoundItem {
+public class FoundItemObject {
 	private String name;
 	private int amountOfStars;
 	private int amountOfVoted;

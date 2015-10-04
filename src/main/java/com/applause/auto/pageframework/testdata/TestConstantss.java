@@ -1,6 +1,6 @@
 package com.applause.auto.pageframework.testdata;
 
-public class TestConstants {
+public class TestConstantss {
 
 	/**
 	 * Test Groups

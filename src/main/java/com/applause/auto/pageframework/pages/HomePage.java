@@ -4,23 +4,21 @@ import io.appium.java_client.AppiumDriver;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.applause.auto.framework.pageframework.device.DeviceUIData;
 import com.applause.auto.pageframework.locators.Locators;
-import com.applause.auto.pageframework.testdata.TestConstants;
+import com.applause.auto.framework.pageframework.devicecontrols.*;
+import com.applause.auto.framework.pageframework.synchronization.*;
 
 public class HomePage implements DeviceUIData {
 	private AppiumDriver _driver = null;
 
 	private Logger logger = LogManager.getLogger(HomePage.class);
-	private WebDriverWait _wait = null;
+	private SynchronizationHelper _wait = null;
 
 	public HomePage(AppiumDriver driver) {
 		_driver = driver;
-		_wait = new WebDriverWait(_driver, TestConstants.Settings.WAIT_TIME_SEC);
+		_wait = new SynchronizationHelper(_driver);
 	}
 
 	public AppiumDriver getDriver() {
@@ -36,24 +34,22 @@ public class HomePage implements DeviceUIData {
 	public void enterSearchKeyWord(String keyWord) {
 		logger.info(String.format("Entering following search keyword: %s",
 				keyWord));
-		WebElement searchFld = _driver.findElement(Locators.HomePage.SEARCH_FLD);
-		searchFld.sendKeys(keyWord);
+		TextBox searchFld = new TextBox(Locators.HomePage.SEARCH_FLD);
+		searchFld.enterText(keyWord);
 	}
 
 	public void tapSearchBtn() throws InterruptedException {
 		logger.info(String.format("Tapping on [Search] button", ""));
-		WebElement searchBtn = _driver
-				.findElement(Locators.HomePage.SEARCH_BTN);
-		searchBtn.click();
+		Button searchBtn = new Button(Locators.HomePage.SEARCH_BTN);
+		searchBtn.tap();
 	}
-	
+
 	public Boolean isAt() {
 		logger.info("Checking if Home Page is loaded");
 
-		_wait.until(ExpectedConditions.visibilityOfElementLocated(
-				Locators.HomePage.PAGE_LOGO));
-		
-		Boolean result = _driver.findElement(Locators.HomePage.PAGE_LOGO).isDisplayed();
+		_wait.waitForElementToAppear(Locators.HomePage.PAGE_LOGO);
+
+		Boolean result = _wait.isElementDisplayed(Locators.HomePage.PAGE_LOGO);
 		if (result)
 			logger.info("Home Page is loaded");
 		else

@@ -1,6 +1,7 @@
 package com.applause.auto.pageframework.pages;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 
 import java.util.ArrayList;
@@ -8,25 +9,25 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.applause.auto.framework.pageframework.device.DeviceUIData;
-import com.applause.auto.pageframework.chunks.FoundItem;
+import com.applause.auto.pageframework.chunks.FoundItemObject;
 import com.applause.auto.pageframework.chunks.LocalHelper;
 import com.applause.auto.pageframework.locators.Locators;
-import com.applause.auto.pageframework.testdata.TestConstants;
+import com.applause.auto.framework.pageframework.devicecontrols.*;
+import com.applause.auto.framework.pageframework.synchronization.*;
 
 public class SearchPage implements DeviceUIData {
 	private AppiumDriver _driver = null;
 
 	private Logger logger = LogManager.getLogger(SearchPage.class);
-	private WebDriverWait _wait = null;
+	private SynchronizationHelper _wait = null;
 
 	public SearchPage(AppiumDriver driver) {
 		_driver = driver;
-		_wait = new WebDriverWait(_driver, TestConstants.Settings.WAIT_TIME_SEC);
+		_wait = new SynchronizationHelper(_driver);
 	}
 
 	public AppiumDriver getDriver() {
@@ -42,45 +43,48 @@ public class SearchPage implements DeviceUIData {
 	public void enterSearchKeyWord(String keyWord) {
 		logger.info(String.format("Entering following search keyword: %s",
 				keyWord));
-		WebElement searchFld = _driver
-				.findElement(Locators.SearchPage.SEARCH_FLD);
-		searchFld.sendKeys(keyWord);
+		TextBox searchFld = new TextBox(Locators.SearchPage.SEARCH_FLD);
+		searchFld.enterText(keyWord);
 	}
 
 	public void tapSearchBtn() {
 		logger.info(String.format("Tapping on [Search] button", ""));
-		WebElement searchBtn = _driver
-				.findElement(Locators.SearchPage.SEARCH_BTN);
-		searchBtn.click();
+		Button searchBtn = new Button(Locators.SearchPage.SEARCH_BTN);
+		searchBtn.tap();
 	}
 
-	public List<FoundItem> getListOfFoundItems() {
+	public List<FoundItemObject> getListOfFoundItems() {
 		logger.info("Getting list of found items");
 
-		List<FoundItem> foundItems = new ArrayList<FoundItem>();
+		List<FoundItemObject> foundItems = new ArrayList<FoundItemObject>();
 		Boolean newFindings = false;
 
+		//I have tried to use ScrollView object using this selector: "com.wholefoods.wholefoodsmarket:id/recipesSearchResultsGrid" 
+		//But this object was useless, methods like getTextElements(), getButtons() returns 0 elements
+		//So, I have used native driver's methods to get elements from the list
+		
 		do {
 			newFindings = false;
-			List<WebElement> elements = _driver
-					.findElements(Locators.SearchPage.LIST_OF_ITEMS);
+			
+			List<WebElement> elements = _driver.findElements(By
+					.xpath(Locators.SearchPage.LIST_OF_ITEMS_Xpath));
 			for (WebElement webElement : elements) {
-				FoundItem foundItem = new FoundItem();
+				FoundItemObject foundItem = new FoundItemObject();
 				try {
 					foundItem
-							.setName(LocalHelper.getElementText(webElement
-									.findElement(Locators.SearchPage.FOUND_ITEM_TITLE)));
+							.setName(LocalHelper.getElementText(webElement.findElement(By
+									.id(Locators.SearchPage.FOUND_ITEM_TITLE))));
 
 					int ammountOfVoted = Integer
-							.parseInt(LocalHelper.getElementText(webElement
-									.findElement(Locators.SearchPage.FOUND_ITEM_AMOUNT_OF_VOTED)));
+							.parseInt(LocalHelper.getElementText(webElement.findElement(By
+									.id(Locators.SearchPage.FOUND_ITEM_AMOUNT_OF_VOTED))));
 					foundItem.setAmountOfVoted(ammountOfVoted);
 				} catch (Exception e) {
 					continue;
 				}
 
 				Boolean isDuplicate = false;
-				for (FoundItem item : foundItems) {
+				for (FoundItemObject item : foundItems) {
 					if (item.getName().equals(foundItem.getName())) {
 						isDuplicate = true;
 						break;
@@ -105,16 +109,13 @@ public class SearchPage implements DeviceUIData {
 
 	public Boolean isAt() {
 		logger.info("Checking if Search Page is loaded");
-
 		String expectedTitle = "search";
 
-		_wait.until(ExpectedConditions.textToBePresentInElementLocated(
-				Locators.SearchPage.PAGE_TITLE, expectedTitle.toUpperCase()));
+		_wait.waitForElementToAppear(Locators.SearchPage.PAGE_TITLE);
 
-		String actualTitle = LocalHelper.getElementText(
-				_driver.findElement(Locators.SearchPage.PAGE_TITLE))
-				.toLowerCase();
-		Boolean result = actualTitle.equals(expectedTitle);
+		Text pageTitle = new Text(Locators.SearchPage.PAGE_TITLE);
+		Boolean result = pageTitle.getStringValue().toLowerCase()
+				.equals(expectedTitle);
 		if (result)
 			logger.info("Search Page is loaded");
 		else
