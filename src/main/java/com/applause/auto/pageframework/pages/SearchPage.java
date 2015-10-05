@@ -19,7 +19,7 @@ import com.applause.auto.pageframework.locators.Locators;
 import com.applause.auto.framework.pageframework.devicecontrols.*;
 import com.applause.auto.framework.pageframework.synchronization.*;
 
-public class SearchPage implements DeviceUIData {
+public class SearchPage {
 	private AppiumDriver _driver = null;
 
 	private Logger logger = LogManager.getLogger(SearchPage.class);
@@ -31,13 +31,7 @@ public class SearchPage implements DeviceUIData {
 	}
 
 	public AppiumDriver getDriver() {
-		// TODO Auto-generated method stub
 		return _driver;
-	}
-
-	public String getSelector() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	public void enterSearchKeyWord(String keyWord) {

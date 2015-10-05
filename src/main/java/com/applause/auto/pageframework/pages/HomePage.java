@@ -10,7 +10,7 @@ import com.applause.auto.pageframework.locators.Locators;
 import com.applause.auto.framework.pageframework.devicecontrols.*;
 import com.applause.auto.framework.pageframework.synchronization.*;
 
-public class HomePage implements DeviceUIData {
+public class HomePage{
 	private AppiumDriver _driver = null;
 
 	private Logger logger = LogManager.getLogger(HomePage.class);
@@ -22,13 +22,7 @@ public class HomePage implements DeviceUIData {
 	}
 
 	public AppiumDriver getDriver() {
-		// TODO Auto-generated method stub
 		return _driver;
-	}
-
-	public String getSelector() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	public void enterSearchKeyWord(String keyWord) {
